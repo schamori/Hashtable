@@ -1,19 +1,37 @@
 import pandas as pd
 
-class Hashtable():
+class Hashtable:
 
-    def __int__(self, size):
+    def __init__(self, size):
         self.size = size
         self.values = [0] * size
 
-    def hash_func(self, stock_code):
-        ascii_code = sum([ord(c) for c in stock_code])
+    def hash_func(self, key):
+        ascii_code = sum([ord(c) for c in key])
         return ascii_code % self.size
 
-    def import_data(self, stock_code, data):
-        hash_code = self.hash_func(stock_code)
-        if self.values[hash_code] == 0:
-            pass
+    def add(self, key, value):
+        hash_code = self.hash_func(key)
+        i = 1
+        while self.values[hash_code] != 0:
+            i = i**2
+            hash_code = (hash_code + i) % self.size
+            i += 1
+        self.values[hash_code] = [key, value]
 
-pd.read_csv("MSFT.csv")
-hashtable = Hashtable(3)
+    def search(self, key):
+        hash_code = self.hash_func(key)
+        i = 1
+        while self.values[hash_code][0] != key:
+            i = i ** 2
+            hash_code = (hash_code + i) % self.size
+            i += 1
+        return self.values[hash_code][1]
+
+
+#stock_data = pd.read_csv("MSFT.csv")
+hashtable = Hashtable(60)
+# hashtable.add("dfs", stock_data)
+
+print(hashtable.values)
+print(hashtable.search("ab"))
