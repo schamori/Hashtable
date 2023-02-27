@@ -16,4 +16,4 @@ class Hashtable():
             pass
 
 pd.read_csv("MSFT.csv")
-hashtable = Hashtable(2)
+hashtable = Hashtable(3)
