@@ -1,6 +1,7 @@
 import pandas as pd
 
-class Hashtable:
+class Hashtable():
+
     def __int__(self, size):
         self.size = size
         self.values = [0] * size
