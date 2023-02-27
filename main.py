@@ -26,12 +26,14 @@ class Hashtable:
             i = i ** 2
             hash_code = (hash_code + i) % self.size
             i += 1
+
+
         return self.values[hash_code][1]
 
 
-#stock_data = pd.read_csv("MSFT.csv")
-hashtable = Hashtable(60)
-# hashtable.add("dfs", stock_data)
+stock_data = pd.read_csv("MSFT.csv")
 
-print(hashtable.values)
-print(hashtable.search("ab"))
+hashtable = Hashtable(60)
+hashtable.add("MSFT", stock_data)
+
+print(hashtable.search("MSFT"))
