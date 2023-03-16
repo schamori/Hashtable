@@ -158,7 +158,7 @@ for path in find_csv_files("data"):
     # put every row in the stockhistory hashmap
     for index, day in stock_data.iterrows():
         stock_history.add(day["Date"], day)
-    hashtable.add(path[:-4], stock_history)
+    hashtable.add(path[5:-4], stock_history)
 
 hashtable.save('hashmap.json')
 #hashtable.search("data\\MSFT").save('hashmap.json')
@@ -167,5 +167,4 @@ print(hashtable.entries)
 hashtable.clear()
 hashtable.load(filename='hashmap.json', create_inner_hashmap= True)
 print("NACH DEM ERNEUTEN LADEN")
-print(hashtable.entries)
-hashtable.plot(path[:-4])
+hashtable.plot("AAPL")
